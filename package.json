@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "postinstall": "cd client && yarn install"
+  },
+
+  "name": "rails-react-redux-ssr-graphql",
+  "private": true,
+  "dependencies": {}
+}
