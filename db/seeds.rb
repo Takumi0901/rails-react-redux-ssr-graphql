@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+Author.create(:name => '木村')
+Blog.create(:title => 'ほげタイトル', :content => 'ほげコンテント', :author_id => 1)

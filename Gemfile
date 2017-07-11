@@ -58,3 +58,6 @@ gem 'foreman'
 
 gem 'mini_racer', platforms: :ruby
 gem 'webpacker_lite'
+gem 'rack-cors', :require => 'rack/cors'
+gem 'graphql'
+gem 'graphiql-rails', group: :development

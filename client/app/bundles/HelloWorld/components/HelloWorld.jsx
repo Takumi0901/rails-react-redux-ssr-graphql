@@ -6,6 +6,7 @@ const HelloWorld = ({ name, updateName }) => (
     <h3>
       Hello, {name}!
     </h3>
+    <a href="/sample">sampleへ</a>
     <hr />
     <form >
       <label htmlFor="name">
