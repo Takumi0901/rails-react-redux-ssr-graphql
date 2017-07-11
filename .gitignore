@@ -25,3 +25,4 @@
 /public/webpack
 /node_modules
 .DS_Store
+/client/node_modules/
