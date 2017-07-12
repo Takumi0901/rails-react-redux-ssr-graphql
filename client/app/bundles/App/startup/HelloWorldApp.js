@@ -1,5 +1,7 @@
 import React from 'react'
 import { Provider } from 'react-redux'
+import { ApolloClient, ApolloProvider } from 'react-apollo';
+const client = new ApolloClient()
 
 import configureStore from '../redux/ConfigureStore'
 import HelloWorld from '../containers/HelloWorld'
@@ -10,9 +12,9 @@ import HelloWorld from '../containers/HelloWorld'
 // railsContext provides contextual information especially useful for server rendering, such as
 // knowing the locale. See the React on Rails documentation for more info on the railsContext
 const HelloWorldApp = (props, _railsContext) => (
-  <Provider store={configureStore(props)}>
+  <ApolloProvider store={configureStore(props)} client={client}>
     <HelloWorld />
-  </Provider>
+  </ApolloProvider>
 )
 
 export default HelloWorldApp
