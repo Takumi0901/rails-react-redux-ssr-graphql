@@ -5,7 +5,6 @@ const client = new ApolloClient();
 
 const configureStore = (railsProps) => (
   createStore(RootReducer, railsProps, compose(applyMiddleware(client.middleware())))
-  // createStore(RootReducer, railsProps)
 )
 
 export default configureStore
