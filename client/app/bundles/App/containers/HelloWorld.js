@@ -15,14 +15,16 @@ class HelloWorld extends Component {
   render() {
     return (
       <div>
-        Hello World !!
+        Hello {this.props.name} !!
       </div>
     )
   }
 }
 
-function mapStateToProps() {
-  return {}
+function mapStateToProps(state) {
+  return {
+    name: state.helloWorld.name
+  }
 }
 
 function mapDispatchToProps(dispatch) {

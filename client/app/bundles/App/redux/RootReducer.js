@@ -4,6 +4,6 @@ import { ApolloClient } from 'react-apollo';
 const client = new ApolloClient()
 
 export default combineReducers({
-  helloWorldReducer: helloWorldReducer,
+  helloWorld: helloWorldReducer,
   apollo: client.reducer()
 })

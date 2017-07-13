@@ -8,11 +8,11 @@ export function updateName(text) {
 }
 
 // Reducer
-export function helloWorldReducer(state = '', action) {
+export function helloWorldReducer(state = {name: ''}, action) {
   const {type} = action
   switch (type) {
     case HELLO_WORLD_NAME_UPDATE:
-      return action.text
+      return Object.assign({}, state, {name: action.text})
     default:
       return state
   }
