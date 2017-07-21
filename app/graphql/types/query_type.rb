@@ -9,4 +9,14 @@ Types::QueryType = GraphQL::ObjectType.define do
       Blog.find(args[:id])
     }
   end
+
+  field :book, Types::BookType do
+    description "An example field added by the generator"
+    argument :id, !types.ID
+    resolve ->(obj, args, ctx) {
+      Book.find(args[:id])
+    }
+  end
+
 end
+

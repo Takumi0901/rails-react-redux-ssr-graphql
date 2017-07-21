@@ -17,23 +17,26 @@ class HelloWorld extends Component {
   render() {
     return (
       <div>
-        Hello {this.props.name} !!
+        <h3>Hello {this.props.name} !!</h3>
+        <p>{this.props.data.title}</p>
       </div>
     )
   }
 }
 
 const fetchTodos = gql`
-  query { blog(id: 1) { title content }}
-  `
+  query {
+    blog(id: 1) {
+      title content
+    }
+  }
+`
 
 
 function mapStateToProps(state) {
-  console.log('*****************')
-  console.log(state)
-  console.log('*****************')
   return {
-    name: state.helloWorld.name
+    name: state.helloWorld.name,
+    data: state.helloWorld.data[0]
   }
 }
 
