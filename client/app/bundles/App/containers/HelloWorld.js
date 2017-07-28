@@ -13,12 +13,19 @@ class HelloWorld extends Component {
     super(props)
   }
 
+  onClickAction() {
+    this.props.createBook({
+      variables: {name: 'HUNTER x HUNTER'},
+    })
+  }
+
 
   render() {
+    console.log(this.props)
     return (
       <div>
         <h3>Hello {this.props.name} !!</h3>
-        <p>{this.props.data.title}</p>
+        <button type="button" onClick={this.onClickAction.bind(this)}>送信</button>
       </div>
     )
   }
@@ -26,17 +33,25 @@ class HelloWorld extends Component {
 
 const fetchTodos = gql`
   query {
-    blog(id: 1) {
-      title content
+    book(id: 2) {
+      name
+    }
+  }
+`
+
+const createBook = gql`
+  mutation CreateBook($name: String!) {
+    CreateBook(input: {name: $name}) {
+      book {name}
     }
   }
 `
 
 
 function mapStateToProps(state) {
+  console.log(state)
   return {
-    name: state.helloWorld.name,
-    data: state.helloWorld.data[0]
+    name: state.helloWorld.name
   }
 }
 
@@ -45,7 +60,14 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default compose(
-  graphql(fetchTodos, {}),
-  connect(mapStateToProps, mapDispatchToProps)
+  connect(mapStateToProps, mapDispatchToProps),
+  graphql(fetchTodos, {
+    props: ({ data }) => ({
+      book: data.book
+    }),
+  }),
+  graphql(createBook, {
+    name: 'createBook'
+  })
 )(HelloWorld);
 

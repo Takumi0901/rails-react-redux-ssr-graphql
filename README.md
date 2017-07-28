@@ -15,6 +15,10 @@ foreman start -f Procfile.dev
 - [Getting started with Rails and GraphQL](http://mgiroux.me/2015/getting-started-with-rails-graphql-relay/)
 - [rmosolgo/graphql-ruby: Ruby implementation of GraphQL](https://github.com/rmosolgo/graphql-ruby)
 - [gauravtiwari/graphql-apollo-blog: An apollo version of the web blog built on relay and GraphQL](https://github.com/gauravtiwari/graphql-apollo-blog)
+- [RailsでGraphQLを使う - あのにのに](http://anoninoni.hateblo.jp/entry/2017/05/21/214322)
+- [今日の雑記はgraphql-activerecord - あのにのに](http://anoninoni.hateblo.jp/entry/2017/05/21/212820)
+- [GraphQL in Ruby on Rails](http://syndicode.co/2016/06/03/graphql-in-ruby-on-rails/)
+
 
 ## routing
 - [reactjs - Server rendering with rails + react-rails gem + react router - Stack Overflow](https://stackoverflow.com/questions/35939324/server-rendering-with-rails-react-rails-gem-react-router)
