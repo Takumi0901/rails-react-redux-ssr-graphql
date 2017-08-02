@@ -22,4 +22,5 @@ foreman start -f Procfile.dev
 
 ## routing
 - [reactjs - Server rendering with rails + react-rails gem + react router - Stack Overflow](https://stackoverflow.com/questions/35939324/server-rendering-with-rails-react-rails-gem-react-router)
-- [Server rendering with rails + react-rails gem + react router](http://www.devsplanet.com/question/35939324) 
+- [Server rendering with rails + react-rails gem + react router](http://www.devsplanet.com/question/35939324)
+- [Server Rendering React on Rails - via @codeship | via @codeship](https://blog.codeship.com/server-rendering-react-on-rails/) 
