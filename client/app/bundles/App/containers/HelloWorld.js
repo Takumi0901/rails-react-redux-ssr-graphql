@@ -15,13 +15,12 @@ class HelloWorld extends Component {
 
   onClickAction() {
     this.props.createBook({
-      variables: {name: 'HUNTER x HUNTER'},
+      variables: {name: 'ワンピース'},
     })
   }
 
 
   render() {
-    console.log(this.props)
     return (
       <div>
         <h3>Hello {this.props.name} !!</h3>
@@ -33,7 +32,7 @@ class HelloWorld extends Component {
 
 const fetchTodos = gql`
   query {
-    book(id: 2) {
+    book(id: 1) {
       name
     }
   }
@@ -49,9 +48,11 @@ const createBook = gql`
 
 
 function mapStateToProps(state) {
+  console.log('******************')
   console.log(state)
+  console.log('******************')
   return {
-    name: state.helloWorld.name
+
   }
 }
 

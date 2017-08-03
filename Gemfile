@@ -62,3 +62,4 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'graphql'
 gem 'graphiql-rails', group: :development
 gem 'graphql-activerecord'
+gem 'mysql2'
