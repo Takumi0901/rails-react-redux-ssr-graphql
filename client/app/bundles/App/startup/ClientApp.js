@@ -9,7 +9,7 @@ import {
 
 import routes from './routes'
 
-export default (props, _railsContext) => (
+export default (props, railsContext) => (
   <ApolloProvider store={configureStore(props)} client={client}>
     <Router>
       {routes}

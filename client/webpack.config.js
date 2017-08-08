@@ -17,17 +17,22 @@ const config = {
   context: resolve(__dirname),
 
   entry: {
-    'webpack-bundle': [
+    vendor: [
       'es5-shim/es5-shim',
       'es5-shim/es5-sham',
       'babel-polyfill',
-      './app/bundles/App/startup/ServerRegistration',
     ],
+    client: [
+      './app/bundles/App/startup/ClientRegistration',
+    ],
+    server: [
+      './app/bundles/App/startup/ServerRegistration',
+    ]
   },
 
   output: {
     // Name comes from the entry section.
-    filename: '[name]-[hash].js',
+    filename: '[name]-bundle.js',
 
     // Leading slash is necessary
     publicPath: `/${webpackPublicOutputDir}`,

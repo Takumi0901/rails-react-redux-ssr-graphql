@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
+import {Link} from 'react-router-dom'
 
 class HelloWorld extends Component {
   static propTypes = {
@@ -24,6 +25,8 @@ class HelloWorld extends Component {
     return (
       <div>
         <h3>Hello {this.props.name} !!</h3>
+        <p>{this.props.book && this.props.book.name}</p>
+        <Link to="/sample">Sampleへ</Link>
         <button type="button" onClick={this.onClickAction.bind(this)}>送信</button>
       </div>
     )

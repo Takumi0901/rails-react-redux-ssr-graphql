@@ -3,6 +3,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import { graphql, compose } from 'react-apollo';
+import {Link} from 'react-router-dom'
 import gql from 'graphql-tag';
 
 class Sample extends Component {
@@ -19,6 +20,7 @@ class Sample extends Component {
     return (
       <div>
         <h3>Sampleだよ!!</h3>
+        <Link to="/hello_world">Helloへ</Link>
       </div>
     )
   }

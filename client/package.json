@@ -2,10 +2,8 @@
   "name": "rails_react_redux_ssr_graphql",
   "private": true,
   "scripts": {
-    "build:production:client": "NODE_ENV=production webpack --config webpack.client.config.js",
-    "build:production:server": "NODE_ENV=production webpack --config webpack.server.config.js",
-    "build:development:client": "webpack -w --config webpack.client.config.js",
-    "build:development:server": "webpack -w --config webpack.server.config.js"
+    "build:production": "NODE_ENV=production webpack --config webpack.config.js",
+    "build:development": "webpack -w --config webpack.config.js"
   },
   "cacheDirectories": [
     "node_modules",
