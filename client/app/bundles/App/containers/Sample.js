@@ -18,7 +18,7 @@ class Sample extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{padding: '0 16px'}}>
         <h3>Sampleだよ!!</h3>
         <Link to="/hello_world">Helloへ</Link>
       </div>

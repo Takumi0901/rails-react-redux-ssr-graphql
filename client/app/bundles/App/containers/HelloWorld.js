@@ -6,6 +6,8 @@ import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import {Link} from 'react-router-dom'
 
+import { Button } from 'react-bootstrap';
+
 class HelloWorld extends Component {
   static propTypes = {
   }
@@ -16,7 +18,7 @@ class HelloWorld extends Component {
 
   onClickAction() {
     this.props.createBook({
-      variables: {name: 'ワンピース'},
+      variables: {name: 'ドラゴンボール'},
     })
   }
 
@@ -26,7 +28,7 @@ class HelloWorld extends Component {
     console.log(this.props)
     console.log('******************')
     return (
-      <div>
+      <div style={{padding: '0 16px'}}>
         <h3>Hello {this.props.name} !!</h3>
         <h4>{this.props.book && this.props.book.name}</h4>
         <ul>
@@ -38,7 +40,7 @@ class HelloWorld extends Component {
         }
         </ul>
         <p><Link to="/sample">Sampleへ</Link></p>
-        <button type="button" onClick={this.onClickAction.bind(this)}>送信</button>
+        <Button bsStyle="success" onClick={this.onClickAction.bind(this)}>送信</Button>
       </div>
     )
   }
