@@ -2,9 +2,8 @@ import {bindActionCreators} from 'redux'
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import { graphql, compose } from 'react-apollo';
+import { compose } from 'react-apollo'
 import {Link} from 'react-router-dom'
-import gql from 'graphql-tag';
 
 class Sample extends Component {
   static propTypes = {
@@ -28,7 +27,7 @@ class Sample extends Component {
 
 
 
-function mapStateToProps(state) {
+function mapStateToProps() {
   return {
   }
 }
@@ -37,5 +36,5 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(Object.assign({}), dispatch)
 }
 
-export default compose(connect(mapStateToProps, mapDispatchToProps))(Sample);
+export default compose(connect(mapStateToProps, mapDispatchToProps))(Sample)
 

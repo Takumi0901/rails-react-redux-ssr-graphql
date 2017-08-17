@@ -2,9 +2,9 @@ import {bindActionCreators} from 'redux'
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import { graphql, compose } from 'react-apollo';
+import { graphql, compose } from 'react-apollo'
 import {reduxForm, Field} from 'redux-form'
-import gql from 'graphql-tag';
+import gql from 'graphql-tag'
 import {Link} from 'react-router-dom'
 
 import FormField from '../components/FormField'
@@ -37,7 +37,11 @@ const createBook = gql`
 class HelloWorld extends Component {
   static propTypes = {
     handleSubmit: PropTypes.func,
-    reset: PropTypes.func
+    reset: PropTypes.func,
+    createBook: PropTypes.func,
+    allBooks: PropTypes.array,
+    name: PropTypes.string,
+    book: PropTypes.object
   }
 
   constructor(props) {
@@ -49,7 +53,7 @@ class HelloWorld extends Component {
       variables: {name: values.book.name},
       refetchQueries: [{
         query: fetchAllBooks
-      }],
+      }]
     })
   }
 
@@ -62,23 +66,25 @@ class HelloWorld extends Component {
 
 
   render() {
-    const {handleSubmit} = this.props
+    const {handleSubmit, name, book, allBooks} = this.props
     return (
       <div style={{padding: '0 16px'}}>
-        <h3>Hello {this.props.name} !!</h3>
-        <Field name="book.name"
-               component={FormField}
-               type="text"
-               label="本の名前を入力"/>
+        <h3>Hello {name} !!</h3>
+        <Field
+          name="book.name"
+          component={FormField}
+          type="text"
+          label="本の名前を入力"/>
         <Button bsStyle="success" onClick={handleSubmit(this.onClickAction.bind(this))}>送信</Button>
-        <h4>{this.props.book && this.props.book.name}</h4>
+        <h4>{book && book.name}</h4>
         <ul>
-        {this.props.allBooks && this.props.allBooks.map((e, index) => {
-            return (
-              <li key={index}>{e.name}</li>
-            )
-          })
-        }
+          {
+            allBooks && allBooks.map((e, index) => {
+              return (
+                <li key={index}>{e.name}</li>
+              )
+            })
+          }
         </ul>
         <p><Link to="/sample">Sampleへ</Link></p>
       </div>
@@ -87,10 +93,8 @@ class HelloWorld extends Component {
 }
 
 
-function mapStateToProps(state) {
-  return {
-
-  }
+function mapStateToProps() {
+  return {}
 }
 
 function mapDispatchToProps(dispatch) {
@@ -107,16 +111,16 @@ export default compose(
   graphql(fetchBook, {
     props: ({ data }) => ({
       book: data.book
-    }),
+    })
   }),
   graphql(fetchAllBooks, {
     props: ({ data }) => ({
       allBooks: data.allBooks
-    }),
+    })
   }),
   graphql(createBook, {
     name: 'createBook'
   })
-)(AddBookForm);
+)(AddBookForm)
 
 

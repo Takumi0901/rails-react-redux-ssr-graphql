@@ -2,7 +2,7 @@ import {combineReducers} from "redux"
 import {helloWorldReducer} from "./modules/HelloWorld"
 import {routerReducer} from 'react-router-redux'
 import { reducer as formReducer } from 'redux-form'
-import { ApolloClient } from 'react-apollo';
+import { ApolloClient } from 'react-apollo'
 const client = new ApolloClient()
 
 export default combineReducers({

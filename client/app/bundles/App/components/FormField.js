@@ -1,20 +1,21 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import classNames from 'classnames'
 
 import {
   FormGroup,
   ControlLabel,
   FormControl
-} from 'react-bootstrap';
+} from 'react-bootstrap'
 
 export default class FormField extends Component{
 
   static propTypes = {
-    classes: PropTypes.any,
-    children: PropTypes.any,
-    inlineStyles: PropTypes.any,
-    color: PropTypes.string,
+    input: PropTypes.object,
+    label: PropTypes.string,
+    type: PropTypes.string,
+    componentClass: PropTypes.object,
+    children: PropTypes.object,
+    meta: PropTypes.object
   }
 
   render() {
@@ -28,7 +29,7 @@ export default class FormField extends Component{
         touched,
         error
       }
-    } = this.props;
+    } = this.props
 
     return (
       <FormGroup>
@@ -46,6 +47,6 @@ export default class FormField extends Component{
 
         {touched && error && <span className="text-danger">{error}</span>}
       </FormGroup>
-    );
+    )
   }
 }
