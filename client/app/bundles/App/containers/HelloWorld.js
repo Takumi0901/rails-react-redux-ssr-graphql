@@ -3,48 +3,12 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import { graphql, compose } from 'react-apollo';
+import {reduxForm, Field} from 'redux-form'
 import gql from 'graphql-tag';
 import {Link} from 'react-router-dom'
 
-import { Button } from 'react-bootstrap';
-
-class HelloWorld extends Component {
-  static propTypes = {
-  }
-
-  constructor(props) {
-    super(props)
-  }
-
-  onClickAction() {
-    this.props.createBook({
-      variables: {name: 'ドラゴンボール'},
-    })
-  }
-
-
-  render() {
-    console.log('******************')
-    console.log(this.props)
-    console.log('******************')
-    return (
-      <div style={{padding: '0 16px'}}>
-        <h3>Hello {this.props.name} !!</h3>
-        <h4>{this.props.book && this.props.book.name}</h4>
-        <ul>
-        {this.props.allBooks && this.props.allBooks.map((e, index) => {
-            return (
-              <li key={index}>{e.name}</li>
-            )
-          })
-        }
-        </ul>
-        <p><Link to="/sample">Sampleへ</Link></p>
-        <Button bsStyle="success" onClick={this.onClickAction.bind(this)}>送信</Button>
-      </div>
-    )
-  }
-}
+import FormField from '../components/FormField'
+import { Button } from 'react-bootstrap'
 
 const fetchAllBooks = gql`
   query {
@@ -70,11 +34,60 @@ const createBook = gql`
   }
 `
 
+class HelloWorld extends Component {
+  static propTypes = {
+    handleSubmit: PropTypes.func,
+    reset: PropTypes.func
+  }
+
+  constructor(props) {
+    super(props)
+  }
+
+  onClickAction(values) {
+    this.props.createBook({
+      variables: {name: values.book.name},
+      refetchQueries: [{
+        query: fetchAllBooks
+      }],
+    })
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const {allBooks, reset} = this.props
+    if(allBooks && nextProps && allBooks !== nextProps.allBooks) {
+      reset()
+    }
+  }
+
+
+  render() {
+    const {handleSubmit} = this.props
+    return (
+      <div style={{padding: '0 16px'}}>
+        <h3>Hello {this.props.name} !!</h3>
+        <Field name="book.name"
+               component={FormField}
+               type="text"
+               label="本の名前を入力"/>
+        <Button bsStyle="success" onClick={handleSubmit(this.onClickAction.bind(this))}>送信</Button>
+        <h4>{this.props.book && this.props.book.name}</h4>
+        <ul>
+        {this.props.allBooks && this.props.allBooks.map((e, index) => {
+            return (
+              <li key={index}>{e.name}</li>
+            )
+          })
+        }
+        </ul>
+        <p><Link to="/sample">Sampleへ</Link></p>
+      </div>
+    )
+  }
+}
+
 
 function mapStateToProps(state) {
-  console.log('******************')
-  console.log(state)
-  console.log('******************')
   return {
 
   }
@@ -83,6 +96,11 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(Object.assign({}), dispatch)
 }
+
+let AddBookForm = reduxForm({
+  form: 'AddBookForm',
+  enableReinitialize: true
+})(HelloWorld)
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
@@ -99,5 +117,6 @@ export default compose(
   graphql(createBook, {
     name: 'createBook'
   })
-)(HelloWorld);
+)(AddBookForm);
+
 
