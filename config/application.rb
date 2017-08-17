@@ -30,5 +30,10 @@ module RailsReactReduxSsrGraphql
     config.autoload_paths << Rails.root.join('app/graphql')
     config.autoload_paths << Rails.root.join('app/graphql/types')
     config.autoload_paths << Rails.root.join('app/graphql/mutations')
+
+    config.generators do |g|
+      g.assets     false
+      g.helper     false
+    end
   end
 end

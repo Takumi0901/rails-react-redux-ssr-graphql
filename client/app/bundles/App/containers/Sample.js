@@ -19,7 +19,7 @@ class Sample extends Component {
     return (
       <div style={{padding: '0 16px'}}>
         <h3>Sampleだよ!!</h3>
-        <Link to="/hello_world">Helloへ</Link>
+        <Link to="/books">book一覧</Link>
       </div>
     )
   }

@@ -13,6 +13,7 @@ import { Button } from 'react-bootstrap'
 const fetchAllBooks = gql`
   query {
     allBooks {
+      id
       name
     }
   }
@@ -34,13 +35,21 @@ const createBook = gql`
   }
 `
 
-class HelloWorld extends Component {
+const destroyBook = gql`
+  mutation DestroyBook($id: ID!) {
+    DestroyBook(input: {id: $id}) {
+      book {id}
+    }
+  }
+`
+
+class BookList extends Component {
   static propTypes = {
     handleSubmit: PropTypes.func,
     reset: PropTypes.func,
     createBook: PropTypes.func,
     allBooks: PropTypes.array,
-    name: PropTypes.string,
+    myName: PropTypes.string,
     book: PropTypes.object
   }
 
@@ -66,22 +75,22 @@ class HelloWorld extends Component {
 
 
   render() {
-    const {handleSubmit, name, book, allBooks} = this.props
+    const {handleSubmit, myName, allBooks} = this.props
     return (
       <div style={{padding: '0 16px'}}>
-        <h3>Hello {name} !!</h3>
+        <h3>Hello {myName} !!</h3>
         <Field
           name="book.name"
           component={FormField}
+          placeholder="本の名前を入力"
           type="text"
-          label="本の名前を入力"/>
-        <Button bsStyle="success" onClick={handleSubmit(this.onClickAction.bind(this))}>送信</Button>
-        <h4>{book && book.name}</h4>
+          label="Book"/>
+        <p><Button block={true} bsStyle="success" onClick={handleSubmit(this.onClickAction.bind(this))}>送信</Button></p>
         <ul>
           {
             allBooks && allBooks.map((e, index) => {
               return (
-                <li key={index}>{e.name}</li>
+                <li key={index}><Link to={'/books/' + e.id}>{e.name}</Link></li>
               )
             })
           }
@@ -93,8 +102,10 @@ class HelloWorld extends Component {
 }
 
 
-function mapStateToProps() {
-  return {}
+function mapStateToProps(state) {
+  return {
+    myName: state.helloWorld.name
+  }
 }
 
 function mapDispatchToProps(dispatch) {
@@ -104,15 +115,10 @@ function mapDispatchToProps(dispatch) {
 let AddBookForm = reduxForm({
   form: 'AddBookForm',
   enableReinitialize: true
-})(HelloWorld)
+})(BookList)
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
-  graphql(fetchBook, {
-    props: ({ data }) => ({
-      book: data.book
-    })
-  }),
   graphql(fetchAllBooks, {
     props: ({ data }) => ({
       allBooks: data.allBooks
@@ -120,6 +126,9 @@ export default compose(
   }),
   graphql(createBook, {
     name: 'createBook'
+  }),
+  graphql(destroyBook, {
+    name: 'destroyBook'
   })
 )(AddBookForm)
 

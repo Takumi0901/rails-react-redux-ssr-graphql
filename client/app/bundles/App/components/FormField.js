@@ -15,13 +15,15 @@ export default class FormField extends Component{
     type: PropTypes.string,
     componentClass: PropTypes.object,
     children: PropTypes.object,
-    meta: PropTypes.object
+    meta: PropTypes.object,
+    placeholder: PropTypes.string
   }
 
   render() {
     const {
       input,
       label,
+      placeholder,
       type,
       componentClass,
       children,
@@ -39,6 +41,7 @@ export default class FormField extends Component{
 
         <FormControl
           {...input}
+          placeholder={placeholder}
           type={type || "text"}
           componentClass={componentClass || "input"}
         >
