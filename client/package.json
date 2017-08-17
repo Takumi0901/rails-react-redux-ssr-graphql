@@ -45,6 +45,7 @@
     "webpack-manifest-plugin": "^1.1.0"
   },
   "devDependencies": {
-    "eslint-plugin-kiwi-graphql": "^0.0.1"
+    "eslint-plugin-kiwi-graphql": "^0.0.1",
+    "redux-logger": "^3.0.6"
   }
 }
