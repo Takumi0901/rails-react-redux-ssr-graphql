@@ -1,6 +1,5 @@
 Types::BookType = GraphQL::ObjectType.define do
   name "Book"
-  backed_by_model :books do
-    attr :name
-  end
+  field :id, types.Int
+  field :name, types.String
 end

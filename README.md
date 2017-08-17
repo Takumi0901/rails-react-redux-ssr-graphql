@@ -20,6 +20,10 @@ foreman start -f Procfile.dev
 - [GraphQL in Ruby on Rails](http://syndicode.co/2016/06/03/graphql-in-ruby-on-rails/)
 
 
+- [Building a GraphQL API in Rails — Part 2: Start Coding](https://medium.com/@DrawandCode/building-a-graphql-api-in-rails-part-start-coding-8b1de6d75041)
+- [Start using GraphQL in Rails | Drian Hillman](http://drianhillman.me/2017/05/06/graphql-ruby.html)
+
+
 ## routing
 - [reactjs - Server rendering with rails + react-rails gem + react router - Stack Overflow](https://stackoverflow.com/questions/35939324/server-rendering-with-rails-react-rails-gem-react-router)
 - [Server rendering with rails + react-rails gem + react router](http://www.devsplanet.com/question/35939324)

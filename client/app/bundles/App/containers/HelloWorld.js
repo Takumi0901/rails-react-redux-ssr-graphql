@@ -22,18 +22,37 @@ class HelloWorld extends Component {
 
 
   render() {
+    console.log('******************')
+    console.log(this.props)
+    console.log('******************')
     return (
       <div>
         <h3>Hello {this.props.name} !!</h3>
-        <p>{this.props.book && this.props.book.name}</p>
-        <Link to="/sample">Sampleへ</Link>
+        <h4>{this.props.book && this.props.book.name}</h4>
+        <ul>
+        {this.props.allBooks && this.props.allBooks.map((e, index) => {
+            return (
+              <li key={index}>{e.name}</li>
+            )
+          })
+        }
+        </ul>
+        <p><Link to="/sample">Sampleへ</Link></p>
         <button type="button" onClick={this.onClickAction.bind(this)}>送信</button>
       </div>
     )
   }
 }
 
-const fetchTodos = gql`
+const fetchAllBooks = gql`
+  query {
+    allBooks {
+      name
+    }
+  }
+`
+
+const fetchBook = gql`
   query {
     book(id: 1) {
       name
@@ -65,9 +84,14 @@ function mapDispatchToProps(dispatch) {
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
-  graphql(fetchTodos, {
+  graphql(fetchBook, {
     props: ({ data }) => ({
       book: data.book
+    }),
+  }),
+  graphql(fetchAllBooks, {
+    props: ({ data }) => ({
+      allBooks: data.allBooks
     }),
   }),
   graphql(createBook, {

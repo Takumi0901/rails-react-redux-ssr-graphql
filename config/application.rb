@@ -27,7 +27,8 @@ module RailsReactReduxSsrGraphql
     #     resource '*', :headers => :any, :methods => [:get, :post, :options]
     #   end
     # end
-    config.autoload_paths << Rails.root.join('app', 'graph')
-    config.autoload_paths << Rails.root.join('app', 'graph', 'types')
+    config.autoload_paths << Rails.root.join('app/graphql')
+    config.autoload_paths << Rails.root.join('app/graphql/types')
+    config.autoload_paths << Rails.root.join('app/graphql/mutations')
   end
 end
